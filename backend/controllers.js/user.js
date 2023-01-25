@@ -2,7 +2,7 @@
 const User = require("../models/user");
 // On importe le token d'authentification dans le contrôlleur
 const jwt = require("jsonwebtoken");
-
+const bcrypt = require("bcrypt")
 //ce contrôller a besoin de deux fonctions, deux middlewares. Il y aura la fonction signup pour l'enrgistrement de nouveaux utilisateurs
 // la premiere chose que l'on fait on va hasher le mot de passe (cad le crypter), il s'agit d'une fonction asynchrone
 exports.signup = (req, res, next) => {
@@ -11,24 +11,17 @@ exports.signup = (req, res, next) => {
         //nous créons un utilisateur et l'enregistrons dans la base de données, en renvoyant une réponse de réussite en cas de succès.
         .then(hash => {
             // On compare dans un premier temps si un compte a déjà été créé avec l'adresse mail fournie. Si oui on envoi un message, si non on créé le compte
-            User.findOne({email: req.body.email})
-            //on récupère la valeur trouvée par notre requête et on regarde si elle est null
-            .then(user => {
-                if (user) {
-                    return res.status(401).json({ message: "Vous possédez déjà un compte !"});
-                } else {
-                    const user = new User({
+            const user = new User({
                         // on utilise les champs créer dans le modèle
                         email: req.body.email,
                         password: hash
-                    });
-                    user.save()
+            });
+                user.save()
                         .then(() => res.status(201).json({ message: "Utilisateur créé !"}))
                         .catch(() => res.status(400).json({ error }));
-                }
-            })
         })
-        .catch(() => res.status(500).json({ eroor }));
+            
+        .catch(() => res.status(500).json({ error }));
 };
 
 

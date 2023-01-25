@@ -36,13 +36,13 @@ app.use((req, res, next) => {
   next();
 });
 
-//on ajoute une route pour gerer les fichiers static
-app.use('/images', express.static(path.join(__dirname, 'images')));
 
 
 //!!!!! A REVOIR LE CHEMIN ATTENDU PAR LE FRONTEND!!!!!
 app.use("/api/auth", userRoutes);
-app.use("/api/auth", sauceRoutes);
+app.use("/api/sauces", sauceRoutes);
+//on ajoute une route pour gerer les fichiers static
+app.use('./images', express.static(path.join(__dirname, 'images')));
 
       
 

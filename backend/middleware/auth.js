@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 module.exports = (req, res, next) => {
     try {
         //On récupère d'abord le token, avec le token
-        const token = req.headers.authorization.("")[1];
+        const token = req.headers.authorization.split(" ")[1];
         //On utilise la fonction verify pour décoder notre token
         const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
         // Nous extrayons l'ID utilisateur de notre token et le rajoutons à l’objet Request afin que nos différentes routes puissent l’exploiter.

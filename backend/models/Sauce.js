@@ -13,8 +13,8 @@ const sauceSchema = mongoose.Schema({
     heat: {type: Number, required: true},
     likes: {type: Number, required: true},
     dislikes: {type: Number, required: true},
-    userLiked: {type: [String<userId>], required: true},
-    usersDisliked: {type: [String<userId>], required: true},
+    userLiked: {type: [String], required: true},
+    usersDisliked: {type: [String], required: true},
 });
 
-module.exports = mongoose.model("user", sauceSchema);
+module.exports = mongoose.model("sauce", sauceSchema);

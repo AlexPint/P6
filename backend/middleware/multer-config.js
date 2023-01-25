@@ -12,7 +12,7 @@ const MIME_TYPES = {
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
         callback(null, "images");
-    }
+    },
     filename: (req, file, callback) => {
         const name = file.originalname.split(" ").join("_");
         // il faut qu'on applique une extension au fichier. on Utilise les MNINESTYPES pour généré l'extension du fichier
@@ -25,4 +25,4 @@ const storage = multer.diskStorage({
 
 
 //Sa méthode single() crée un middleware qui capture les fichiers d'un certain type (passé en argument), et les enregistre au système de fichiers du serveur à l'aide du storage configuré.
-module.exports = multer({storage: storage}).single('image');
+module.exports = multer({ storage: storage }).single('image');

@@ -12,13 +12,13 @@ exports.signup = (req, res, next) => {
         .then(hash => {
             // On compare dans un premier temps si un compte a déjà été créé avec l'adresse mail fournie. Si oui on envoi un message, si non on créé le compte
             const user = new User({
-                        // on utilise les champs créer dans le modèle
-                        email: req.body.email,
-                        password: hash
+                // on utilise les champs créer dans le modèle
+                email: req.body.email,
+                 password: hash
             });
-                user.save()
-                        .then(() => res.status(201).json({ message: "Utilisateur créé !"}))
-                        .catch(() => res.status(400).json({ error }));
+            user.save()
+                .then(() => res.status(201).json({ message: "Utilisateur créé !"}))
+                .catch(() => res.status(400).json({ error }));
         })
             
         .catch(() => res.status(500).json({ error }));

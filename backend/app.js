@@ -42,7 +42,7 @@ app.use((req, res, next) => {
 app.use("/api/auth", userRoutes);
 app.use("/api/sauces", sauceRoutes);
 //on ajoute une route pour gerer les fichiers static
-app.use('./images', express.static(path.join(__dirname, 'images')));
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
       
 

@@ -5,6 +5,9 @@ const http = require("http");
 //On importe notre application
 const app = require("./app");
 
+const dotenv = require("dotenv");
+dotenv.config();
+
 const normalizePort = val => {
   const port = parseInt(val, 10);
     if (isNaN(port)) {
@@ -17,7 +20,7 @@ const normalizePort = val => {
   };
   
 // On doit dire à l'app express sur quel port elle doit tourner
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT);
 app.set('port', port);
 
 const errorHandler = error => {
@@ -52,4 +55,4 @@ console.log('Listening on ' + bind);
 });
 
 // On configure le server pour qu'il écoute via un port. soit par un port par defaut, soit par le port 3000
-server.listen(process.env.PORT || 3000);
+server.listen(process.env.PORT);
